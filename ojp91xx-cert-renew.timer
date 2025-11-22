@@ -1,0 +1,11 @@
+[Unit]
+Description=Run HP 91xx certbot renewal daily
+
+[Timer]
+OnCalendar=*-*-* 02:00:00
+RandomizedDelaySec=150min
+Persistent=true
+Unit=ojp91xx-cert-renew.service
+
+[Install]
+WantedBy=timers.target

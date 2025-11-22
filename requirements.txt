@@ -1,0 +1,7 @@
+setuptools
+wheel
+cryptography
+playwright
+certbot
+certbot-dns-cloudflare
+

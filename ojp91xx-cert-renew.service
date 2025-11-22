@@ -1,0 +1,20 @@
+[Unit]
+Description=Renew and upload HP printer certificate (91xx series)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+#EnvironmentFile=/etc/ojp91xx-cert-renew/config.env
+#ExecStart=/opt/ojp91xx-cert-renew/.venv/bin/python /opt/ojp91xx-cert-renew/renew_cert.py
+ExecStart=/bin/bash -c 'set -a && source /etc/ojp91xx-cert-renew/config.env && exec /opt/ojp91xx-cert-renew/.venv/bin/python /opt/ojp91xx-cert-renew/renew_cert.py'
+WorkingDirectory=/opt/ojp91xx-cert-renew
+StandardOutput=journal
+StandardError=journal
+# Hardening
+ProtectHome=read-only
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target
+
