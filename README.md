@@ -55,7 +55,6 @@ It includes **Self-Healing Logic**: If the printer currently has an invalid/expi
     * Set up a Python Virtual Environment (`.venv`) in `/opt/`.
     * Install Playwright and the Chromium browser binary.
     * Install Systemd units (`ojp91xx-cert-renew.service` and `.timer`).
-    * **Perform a test run** to verify connectivity and issuing.
 
 ## Usage
 
@@ -74,4 +73,3 @@ journalctl -u ojp91xx-cert-renew.service -f
 ## Directory Structure
 * `/opt/ojp91xx-cert-renew/`: Application code and virtual environment.
 * `/etc/ojp91xx-cert-renew/`: Configuration files (`config.env`, `cloudflare.ini`).
-* `/etc/systemd/system/`: Service and Timer definitions.
