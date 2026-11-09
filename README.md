@@ -37,7 +37,9 @@ It includes **Self-Healing Logic**: If the printer currently has an invalid/expi
     * `PRINTER_DOMAIN_NAME`: The domain name that you control for Cloudflare (e.g., `example.com`)
     * `PRINTER_PIN`: The admin PIN found on the printer sticker (or set manually).
     * `CERTBOT_EMAIL`: Email for Let's Encrypt notifications.
-    * `RENEWAL_THRESHOLD_DAYS`: The number of days (or less) that should be left until certificate expiration before issuing a new certificate (`30` is normal)
+    * `RENEWAL_FRACTION`: Renew when this fraction of the certificate's lifetime (or less) remains (`0.33` follows Let's Encrypt's guidance and adapts as certificate lifetimes shrink)
+    * `RENEWAL_MIN_DAYS`: Always renew once this many days (or fewer) remain (`7` by default)
+    * `RENEWAL_THRESHOLD_DAYS` (deprecated): Fixed number of days; only used if `RENEWAL_FRACTION` is not set
 
 3.  **Create Cloudflare Credentials:**
     Create a file named `cloudflare.ini` in the project directory.

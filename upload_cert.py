@@ -22,7 +22,7 @@ logger.addHandler(handler)
 def upload_certificate(allow_invalid_cert=False):
     if not os.path.exists(CERT_PATH) or not os.path.exists(CHAIN_PATH):
         logger.error("Certificate or chain file is missing.")
-        return
+        sys.exit(1)
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
@@ -69,4 +69,8 @@ def upload_certificate(allow_invalid_cert=False):
 
 if __name__ == "__main__":
     allow_invalid = "--insecure" in sys.argv or "--ignore-https-errors" in sys.argv
-    upload_certificate(allow_invalid_cert=allow_invalid)
+    try:
+        upload_certificate(allow_invalid_cert=allow_invalid)
+    except Exception as e:
+        logger.error(f"Certificate upload failed: {e}")
+        sys.exit(1)
